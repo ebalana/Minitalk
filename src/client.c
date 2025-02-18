@@ -6,18 +6,18 @@
 /*   By: ebalana- <ebalana-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 12:49:43 by ebalana-          #+#    #+#             */
-/*   Updated: 2025/02/18 13:28:37 by ebalana-         ###   ########.fr       */
+/*   Updated: 2025/02/18 18:42:40 by ebalana-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minitalk.h"
 
-static int	g_ack_received = 0;
+static int	g_signal_received = 0;
 
-void	wait_for_ack(int signum)
+void	wait_confirmation(int signum)
 {
 	(void)signum;
-	g_ack_received = 1;
+	g_signal_received = 1;
 }
 
 void	send_char(pid_t pid, char c)
@@ -25,19 +25,19 @@ void	send_char(pid_t pid, char c)
 	int					i;
 	struct sigaction	sa;
 
-	sa.sa_handler = wait_for_ack;
+	sa.sa_handler = wait_confirmation;
 	sa.sa_flags = SA_RESTART;
 	sigemptyset(&sa.sa_mask);
 	sigaction(SIGUSR1, &sa, NULL);
 	i = 7;
 	while (i >= 0)
 	{
-		g_ack_received = 0;
+		g_signal_received = 0;
 		if ((c >> i) & 1)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		while (!g_ack_received)
+		while (!g_signal_received)
 			pause();
 		i--;
 	}
