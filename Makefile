@@ -6,6 +6,7 @@ RED = \033[0;91m
 # Compiler and flags
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+# CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 RM = rm -f
 
 # Directories and files

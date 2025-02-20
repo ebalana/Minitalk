@@ -6,7 +6,7 @@
 /*   By: ebalana- <ebalana-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:19:27 by ebalana-          #+#    #+#             */
-/*   Updated: 2025/01/13 16:48:51 by ebalana-         ###   ########.fr       */
+/*   Updated: 2025/02/19 12:12:49 by ebalana-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
+int		ft_isdigit_str(char *str);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
